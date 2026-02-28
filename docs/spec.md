@@ -5,8 +5,10 @@ AOCL (Agent Orchestration Control Layers) standardizes how an orchestrator proce
 AOCL is designed to be **runtime-agnostic** and **framework-agnostic**.
 
 - AOCL **does not** define how agents are built, how tools execute, or how workers are scheduled.
-- AOCL **does** define a layered control pipeline (or graph) and the minimum contract each layer must follow.
+- AOCL **does** define a layered control pipeline (or graph) and the minimum contract each layer MUST follow.
 - AOCL is intended to be **auditable** by emitting layer activity as **AEE envelopes** (see `docs/aee-binding.md`).
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
 
 ---
 
@@ -38,7 +40,7 @@ A configured sequence or graph of layers used for a class of tasks (e.g., `defau
 ### Context Bundle
 A structured state object passed through AOCL layers.
 
-**Design goal:** context should remain inspectable and replayable while avoiding bloated “hidden state”.
+**Design goal:** context SHOULD remain inspectable and replayable while avoiding bloated “hidden state”.
 
 ---
 
@@ -48,10 +50,10 @@ A structured state object passed through AOCL layers.
    Work flows through ordered layers with clear responsibilities.
 
 2. **Branchable, bypassable**  
-   AOCL supports alternate paths and skipping layers — but **decisions must be auditable**.
+   AOCL supports alternate paths and skipping layers — but **decisions MUST be auditable**.
 
 3. **Delta-first context**  
-   Layers should emit **context deltas** (patches) and refs/digests rather than re-sending huge objects.
+   Layers SHOULD emit **context deltas** (patches) and refs/digests rather than re-sending huge objects.
 
 4. **Audit-first**  
    AOCL is intended to produce a trace where you can answer:
@@ -65,7 +67,7 @@ A structured state object passed through AOCL layers.
 
 ## 3. Context Bundle (Recommended Partitions)
 
-AOCL does not mandate a single schema, but recommends a partitioned bundle to keep control clean:
+AOCL does not mandate a single schema, but RECOMMENDS a partitioned bundle to keep control clean:
 
 - **C0 Event**: Source, timestamp, channel, correlation IDs, attachments
 - **C1 Identity & Scope**: User/org, roles, permissions, secret scope, redaction rules

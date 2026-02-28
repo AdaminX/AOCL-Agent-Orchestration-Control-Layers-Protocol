@@ -1,12 +1,13 @@
-
 # AOCL Observability (v0.1)
 
 AOCL is designed so you can *see the system think* — layer by layer — without guessing what happened.
 
-This doc defines:
-- the minimum observability outputs an AOCL orchestrator should emit
+The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
+
+This document defines:
+- the minimum observability outputs an AOCL orchestrator SHOULD emit
 - how to represent “layer activation” using AEE envelopes
-- recommended log formats for grepability and dashboards
+- RECOMMENDED log formats for grepability and dashboards
 
 For AOCL ↔ AEE emission rules, see: `docs/aee-binding.md`.
 
@@ -35,7 +36,7 @@ An AOCL run should answer, quickly:
 
 ## 2. Minimum Trace Events (Recommended)
 
-AOCL should emit AEE `event` envelopes for:
+AOCL SHOULD emit AEE `event` envelopes for:
 
 - `aocl.stack.select` — which stack/branch was chosen (and why)
 - `aocl.layer.enter` — layer started
@@ -101,7 +102,7 @@ Each line is the full AEE envelope JSON (unchanged), as emitted.
 
 **Recommendation:**
 - Keep envelopes small: use refs + digests + deltas
-- Apply redaction rules before logging (identity layer should configure these)
+- Apply redaction rules before logging (identity layer SHOULD configure these)
 
 ---
 
@@ -181,17 +182,17 @@ This keeps dashboards consistent even across different implementations.
 
 ## 7. Redaction (Minimum Guidance)
 
-AOCL stacks should treat redaction as a first-class concern:
+AOCL stacks SHOULD treat redaction as a first-class concern:
 
-- Identity/scope layer should set a redaction policy in context
-- Logging sinks should apply it before persistence
-- Avoid logging secrets in payloads; prefer refs that require access-controlled fetch
+- Identity/scope layer SHOULD set a redaction policy in context
+- Logging sinks SHOULD apply it before persistence
+- Implementations MUST NOT log secrets in payloads; prefer refs that require access-controlled fetch
 
 In v0.1, the simplest safe policy is:
 
-- Never log raw secrets
-- Never log full file contents
-- Log only refs + digests + small summaries
+- MUST NOT log raw secrets
+- MUST NOT log full file contents
+- SHOULD log only refs + digests + small summaries
 
 ---
 

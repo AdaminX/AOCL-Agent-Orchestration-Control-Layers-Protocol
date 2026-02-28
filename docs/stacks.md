@@ -1,12 +1,13 @@
-
 # AOCL Stacks (v0.1)
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
 
 This document defines:
 
-1. A recommended default AOCL layer taxonomy, and  
-2. A minimal stack definition format you can copy/paste
+1. A RECOMMENDED default AOCL layer taxonomy, and
+2. A minimal stack definition format
 
-AOCL stacks are intentionally simple in v0.1: they can be a **pipeline** (ordered list) or a **DAG** (nodes + edges).
+AOCL stacks are intentionally simple in v0.1: they MAY be a **pipeline** (ordered list) or a **DAG** (nodes + edges).
 
 ---
 
@@ -182,8 +183,8 @@ Stacks SHOULD declare bypass policy in config, even if enforcement is runtime-sp
 
 **Recommendation:**
 
-- Do not allow bypass of identity + policy layers in v0.1
-- If bypass is allowed, emit `aocl.control.bypass` (see `docs/aee-binding.md`)
+- Implementations SHOULD NOT allow bypass of identity + policy layers in v0.1
+- If bypass is allowed, the orchestrator MUST emit `aocl.control.bypass` (see `docs/aee-binding.md`)
 
 ---
 

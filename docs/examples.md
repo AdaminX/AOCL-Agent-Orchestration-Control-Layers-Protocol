@@ -1,4 +1,3 @@
-
 # AOCL Examples (v0.1)
 
 This file contains copy/paste examples you can use immediately:
@@ -30,7 +29,7 @@ Each line is a full AEE envelope JSON (newline-delimited).
 {"v":"1","id":"01AOCL_EVENT_L9_0001","ts":"2026-01-26T12:00:06Z","type":"event","from":"agent.orchestrator","to":"log.aocl","intent":"aocl.layer.decision","corr":"01AOCL_CORR_0001","reply_to":"01ORIGIN_TASK_0001","trace":null,"priority":"normal","requires":null,"payload":{"run_id":"RUN-01AOCL-0001","stack_id":"default","layer":{"id":"L9.assemble.respond","version":"0.1"},"timing_ms":22,"decisions":[{"code":"ASSEMBLED","reason":"Prepared human-readable response with evidence refs"}],"delta":{},"refs":["log:pbs01:job/2026-01-26T02:00Z"],"digests":{"context_in":"sha256:...","context_out":"sha256:..."},"control":{"halt_pipeline":false}},"sig":null}
 {"v":"1","id":"01FINAL_RESULT_0001","ts":"2026-01-26T12:00:06Z","type":"result","from":"agent.orchestrator","to":"human.adam","intent":"ops.backup.status.check","corr":"01AOCL_CORR_0001","reply_to":"01ORIGIN_TASK_0001","trace":null,"priority":"high","requires":{"evidence":true},"payload":{"ok":false,"summary":"Partial failure: pve02 backup check failed (connection_refused:8007)","confidence":0.96,"evidence_refs":["log:pbs01:job/2026-01-26T02:00Z"]},"sig":null}
 {"v":"1","id":"01AOCL_EVENT_RUNSUM_0001","ts":"2026-01-26T12:00:06Z","type":"event","from":"agent.orchestrator","to":"log.aocl","intent":"aocl.run.summary","corr":"01AOCL_CORR_0001","reply_to":"01ORIGIN_TASK_0001","trace":null,"priority":"normal","requires":null,"payload":{"run_id":"RUN-01AOCL-0001","stack_id":"default","layers_executed":["L0.ingress.normalize","L1.identity.scope","L2.route.smart","L3.policy.gate","L5.context.retrieve","L6.shape.rewrite","L7.delegate.execute","L8.verify.check","L9.assemble.respond","L10.audit.writeback"],"layers_bypassed":[],"branch_taken":null,"timing_ms_total":6000,"delegations":[{"to":"agent.backup_auditor","intent":"ops.backup.status.check","status":"PARTIAL_FAILURE"}]},"sig":null}
-````
+```
 
 Notes:
 

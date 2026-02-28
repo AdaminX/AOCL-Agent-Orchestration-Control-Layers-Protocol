@@ -20,6 +20,7 @@ Delivered docs:
 - `docs/aee-binding.md`
 - `docs/stacks.md`
 - `docs/observability.md`
+- `docs/examples.md`
 
 Core features:
 - Layer contract (decisions, context delta, actions, control flags)

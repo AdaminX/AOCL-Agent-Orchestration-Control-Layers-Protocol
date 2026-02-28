@@ -7,7 +7,9 @@ AOCL (Agent Orchestration Control Layers) is designed to work alongside AEE (Age
 
 **This binding defines how AOCL uses AEE without changing the AEE envelope.**
 
-**AEE repo:** https://github.com/AdaminX/AEE-Agent-Envelope-Exchange
+**AEE repo:** https://github.com/quoxai/aee
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://www.rfc-editor.org/rfc/rfc2119).
 
 ---
 
@@ -54,6 +56,7 @@ AOCL defines an intent namespace for layer-level audit and control:
 - `aocl.control.branch`
 - `aocl.control.bypass`
 - `aocl.verify.result`
+- `aocl.run.summary`
 
 ### Delegation Intents
 AOCL does not impose intent names for business tasks. It delegates using the caller’s intent (e.g., `ops.backup.status.check`) or a derived intent convention.
@@ -105,7 +108,7 @@ Cons:
 
 AOCL layer envelopes SHOULD NOT contain the full context bundle.
 
-Instead, payloads should include:
+Instead, payloads SHOULD include:
 - `layer_id`, `layer_version`
 - `decisions[]` (short reasons)
 - `context_delta` (small patch or merge delta)
@@ -198,7 +201,7 @@ When a layer decides to delegate work to a worker agent, it emits an AEE `task` 
 
 ---
 
-## 8. Bypass and Branch Decisions Must Be Explicit
+## 8. Bypass and Branch Decisions MUST Be Explicit
 
 If bypassing layers is requested or applied, AOCL MUST emit an AEE `event` capturing:
 

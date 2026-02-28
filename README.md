@@ -1,19 +1,25 @@
-# AOCL Protocol — Agent Orchestration Control Layers
+# AOCL Protocol -- Agent Orchestration Control Layers
 
-AOCL is a protocol for running modern agent swarms through **layered control pipelines**.
+| | |
+|---|---|
+| **Version** | 0.1 (Experimental) |
+| **Status** | IETF Internet-Draft ([`draft-cowles-aocl-00`](https://datatracker.ietf.org/doc/draft-cowles-aocl/)) |
+| **License** | MIT |
+
+AOCL is a control-layer protocol for AI agent orchestration that produces observability as a first-class output.
 
 It standardizes *how an orchestrator processes an incoming event* (user message, alert, webhook, cron tick) by passing it through ordered layers such as:
 
 - Smart routing
-- Policy & safety gating
-- Context/memory integration
+- Policy and safety gating
+- Context/memory retrieval
 - Rewriting/structuring
 - Delegation to agents/tools
 - Verification
 - Response assembly
 
-**AOCL is not a runtime.**  
-It does not prescribe how to execute tools, schedule workers, or build agents. It standardizes the *control flow and the audit trail*.
+**AOCL is not a runtime.**
+It does not prescribe how to execute tools, schedule workers, or build agents. It standardizes the *control flow* and the *audit trail*.
 
 ---
 
@@ -26,7 +32,7 @@ AOCL is designed to run alongside **AEE**.
 
 **Key idea:** AOCL makes layers auditable by emitting **AEE envelopes for layer activity**, not just for agent hops.
 
-**AEE repo:** https://github.com/AdaminX/AEE-Agent-Envelope-Exchange
+**AEE repo:** https://github.com/quoxai/aee
 
 ---
 
@@ -35,7 +41,7 @@ AOCL is designed to run alongside **AEE**.
 Think of AOCL like an **OSI-style layer stack**, but for agent orchestration:
 
 ```
-Ingress → Identity/Scope → Smart Router → Policy Gate → Context → Rewrite → Delegate → Verify → Assemble
+Ingress → Identity/Scope → Smart Router → Policy Gate → Plan → Context → Rewrite → Delegate → Verify → Assemble → Audit
 ```
 
 AOCL supports:
@@ -76,23 +82,24 @@ See: `docs/aee-binding.md`
 
 ## Documentation
 
-- `docs/spec.md` — Core AOCL concepts and layer contract
-- `docs/aee-binding.md` — How AOCL uses AEE without changing AEE
-- `docs/stacks.md` — Default layer stacks + simple stack definition format
-- `docs/observability.md` — Tracing and “see layers activate”
-- `ROADMAP.md` — Planned extensions and future docs
+- `docs/spec.md` -- Core AOCL concepts and layer contract
+- `docs/aee-binding.md` -- How AOCL uses AEE without changing AEE
+- `docs/stacks.md` -- Default layer taxonomy and stack definition format
+- `docs/observability.md` -- Tracing, logging, and “see layers activate”
+- `docs/examples.md` -- End-to-end trace and stack variant examples
+- `ROADMAP.md` -- Planned extensions and future work
 
 ---
 
 ## Related Protocols
 
-AOCL is part of the **Quox protocol family** — three complementary specs for agentic systems:
+AOCL is part of the **Quox protocol family** -- three complementary specs for agentic systems:
 
 | Protocol | Role | Repo |
 |----------|------|------|
-| **AEE** | Envelope format + causality | [AEE](https://github.com/AdaminX/AEE-Agent-Envelope-Exchange) |
+| **AEE** | Envelope format + causality | [AEE](https://github.com/quoxai/aee) |
 | **AOCL** | Orchestration control layers | *(this repo)* |
-| **VOLT** | Verifiable evidence ledger + tamper-evident traces | [VOLT](https://github.com/AdaminX/VOLT-Protocol) |
+| **VOLT** | Verifiable evidence ledger + tamper-evident traces | [VOLT](https://github.com/quoxai/volt) |
 
 **How they connect:**
 - **AEE → AOCL**: AOCL processes incoming AEE envelopes through its layer stack and emits `aocl.*` AEE envelopes for audit.
@@ -105,3 +112,7 @@ Each protocol is independently useful. Together they provide **observable, contr
 
 **Experimental (v0.1)**
 AOCL is intended to stay small: stable core semantics, with extensibility through stack definitions and intent schemas.
+
+## License
+
+This specification is released under the [MIT License](https://opensource.org/licenses/MIT).
